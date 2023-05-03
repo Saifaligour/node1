@@ -1,0 +1,19 @@
+{
+  "name": "day1",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "First Last <first.last@example.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "docker":"docker-compose up -d "
+  },
+  "dependencies": {
+    "amqplib": "^0.10.2",
+    "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
