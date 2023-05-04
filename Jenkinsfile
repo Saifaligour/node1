@@ -3,6 +3,11 @@ pipeline {
 
   stages{
     
+    stage('create new image') {
+      steps {
+        sh 'docker build --tag node  .'
+      }
+    }
     stage('Stop and Remove Existing Container') {
       steps {
         sh 'docker rm -f node'
