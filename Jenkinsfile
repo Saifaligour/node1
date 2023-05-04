@@ -17,7 +17,12 @@ pipeline {
 
     stage('Check Application Status') {
       steps {
-        sh 'docker ps'
+        sh 'docker ps -a'
+      }
+    }
+    stage('Check Application Logs') {
+      steps {
+        sh 'docker logs node'
       }
     }
   }
