@@ -8,7 +8,7 @@ pipeline {
     
     stage('Stop and Remove Existing Container') {
       steps {
-        withEnv(['PATH+=/usr/local/bin/docker-compose']){
+        withEnv(['PATH+=/usr/local/bin/']){
         sh 'docker-compose down'
         }
       }
