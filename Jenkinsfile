@@ -1,17 +1,21 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'docker:latest'
+      args '--privileged --user root -v /var/run/docker.sock:/var/run/docker.sock'
+    }
+  }
 
-//   stages {
-//     stage('Clone Repository') {
-//       steps {
-//         checkout([$class: 'GitSCM', branches: [[name: 'master']], userRemoteConfigs: [[url: 'https://github.com/Saifaligour/node1.git']]])
-//       }
-//     }
+  // environment { 
+  //       COMPOSE_DOCKER_CLI_BUILD = "1"
+  //   }
   stages{
     
     stage('Stop and Remove Existing Container') {
       steps {
+        withEnv(['PATH+=/usr/local/bin/docker-compose']){
         sh 'docker-compose down'
+        }
       }
     }
 
@@ -24,7 +28,7 @@ pipeline {
 
     stage('Check Application Status') {
       steps {
-        sh 'docker ps'
+        sh 'docker-compose ps'
       }
     }
   }
