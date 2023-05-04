@@ -16,7 +16,7 @@ pipeline {
 
     stage('Run Docker Container') {
       steps {
-        sh 'docker run -d -p 4000:3004 -v $(pwd):/app -v /app/node_modules --env-file .env --name node node'
+        sh 'docker run -d -p 4000:3004 -v $(pwd):/app --env-file .env --name node node'
       } 
     }
 
