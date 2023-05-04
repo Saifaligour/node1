@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'docker:latest'
-      args '--privileged --user root -v /var/run/docker.sock:/var/run/docker.sock'
-    }
-  }
+  agent any
 
   // environment { 
   //       COMPOSE_DOCKER_CLI_BUILD = "1"
