@@ -8,7 +8,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "docker-compose":"docker-compose up -d ",
-    "docker":"docker run -d -p 4000:3004 -v $(pwd):/app -v /app/node_modules --env-file .env --name node1 node"
+    "docker":"docker run -d -p 4000:3004  --env-file .env --name node1 node"
   },
   "dependencies": {
     "amqplib": "^0.10.2",
