@@ -1,0 +1,54 @@
+# First, add the API
+apiVersion: apps/v1
+# This will be the deployment setup
+kind: Deployment
+metadata:
+  # Name your Deployment here
+  name: node-deployment
+  labels:
+    # label your deployment
+    app: node
+spec:
+  # The number of pods/replicas to run
+  replicas: 2            
+  selector:
+    matchLabels:
+    # selector to match the pod
+      app: node  
+  template:
+    metadata:
+      labels:
+      # label your pod
+        app: node  
+    spec:
+      containers:
+      # Add the container name for Kubernetes
+      - name: node
+      # Add the local image name
+        image: node 
+        ports:
+        # port for running the container
+        - containerPort: 3004  
+--- 
+
+# First, add the Service API
+apiVersion: v1
+# This will be the Service setup
+kind: Service
+metadata:
+  # Your service name
+  name: node-service
+spec:
+  selector:
+    # selector that matches the pod
+    app: node 
+  # type of service
+  type: LoadBalancer     
+  ports:
+  - protocol: TCP 
+    # port for exposing the service        
+    port: 5000
+    # portfor exposing the pod             
+    targetPort: 3000
+    # port for exposing the node       
+    nodePort: 30001
